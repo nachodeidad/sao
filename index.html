@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sao <3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'MS Gothic', monospace;
+            background: url('https://i.redd.it/c5qjefcap05e1.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            /* Ajusta la imagen a toda la pantalla */
+            min-height: 100vh;
+            padding: 10px;
+            position: relative;
+            image-rendering: pixelated;
+        }
+
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFF8F0;
+            border: 4px ridge #6F9BCF;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: linear-gradient(180deg, #D5E6F5 0%, #BBDBEF 100%);
+            border-bottom: 4px ridge #6F9BCF;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before,
+        .header::after {
+            content: '★';
+            position: absolute;
+            font-size: 2em;
+            color: #FFD700;
+            animation: spin 4s linear infinite;
+        }
+
+        .header::before {
+            left: 20px;
+            top: 15px;
+        }
+
+        .header::after {
+            right: 20px;
+            top: 15px;
+            animation-direction: reverse;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header h1 {
+            color: #3F7BF2;
+            font-size: 1.3em;
+            text-shadow: 2px 2px 0px #87CEEB, 4px 4px 0px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .marquee {
+            background: #3F7BF2;
+            color: white;
+            padding: 5px 0;
+            overflow: hidden;
+            border-bottom: 2px solid #6F9BCF;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+            background: #FFF8F0;
+        }
+
+        .left-section {
+            border-right: 4px ridge #6F9BCF;
+            padding: 15px;
+        }
+
+        .right-section {
+            background: #F0F5FF;
+            padding: 15px;
+        }
+
+        .box {
+            border: 3px ridge #6F9BCF;
+            margin-bottom: 15px;
+            background: white;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .box-header {
+            background: linear-gradient(180deg, #D5E6F5 0%, #BBDBEF 100%);
+            border-bottom: 2px solid #6F9BCF;
+            padding: 8px 12px;
+            font-weight: bold;
+            color: #3F7BF2;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .box-header::before {
+            content: '◆';
+            color: #87CEEB;
+        }
+
+        .box-content {
+            padding: 12px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .intro-box {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border: 4px ridge #6F9BCF;
+            background: linear-gradient(135deg, #D5E6F5, #87CEEB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            flex-shrink: 0;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar::after {
+            content: '✧';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.2em;
+            color: #87CEEB;
+            animation: sparkle 1s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .intro-text h2 {
+            color: #3F7BF2;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: #87CEEB;
+        }
+
+        .update-item {
+            background: #F0F8FF;
+            border: 2px dashed #A2C8E3;
+            padding: 10px;
+            margin: 10px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .update-item::before {
+            content: '►';
+            position: absolute;
+            left: 8px;
+            color: #3F7BF2;
+            font-size: 0.8em;
+        }
+
+        .update-date {
+            color: #3F7BF2;
+            font-weight: bold;
+            font-size: 0.85em;
+            display: inline-block;
+            background: #D5E6F5;
+            padding: 2px 8px;
+            border: 1px solid #6F9BCF;
+            margin-bottom: 5px;
+        }
+
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.85em;
+        }
+
+        .status-table td {
+            padding: 5px;
+            border: 1px solid #A2C8E3;
+        }
+
+        .status-table td:first-child {
+            background: #D5E6F5;
+            font-weight: bold;
+            color: #3F7BF2;
+            width: 40%;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: white;
+            border: 2px outset #6F9BCF;
+            text-decoration: none;
+            color: #3F7BF2;
+            font-weight: bold;
+            transition: all 0.1s;
+            text-align: center;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            border-style: inset;
+            background: #D5E6F5;
+        }
+
+        .nav-link.active {
+            background: #BBDBEF;
+            border-style: inset;
+        }
+
+        .nav-link:active {
+            transform: translate(2px, 2px);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .button-item {
+            background: linear-gradient(180deg, #D5E6F5 0%, #BBDBEF 100%);
+            border: 3px ridge #6F9BCF;
+            padding: 20px 8px;
+            text-align: center;
+            font-size: 0.75em;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-item:active {
+            box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .visitor-counter {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .counter-display {
+            background: black;
+            color: #00BFFF;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+            padding: 10px;
+            border: 3px inset #666;
+            letter-spacing: 3px;
+            margin: 10px 0;
+            box-shadow: inset 0 0 10px rgba(0, 191, 255, 0.3);
+        }
+
+        .todo-item {
+            padding: 5px 0;
+            font-size: 0.85em;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .todo-item:before {
+            content: '☑';
+            position: absolute;
+            left: 0;
+            color: #3F7BF2;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(180deg, #BBDBEF 0%, #D5E6F5 100%);
+            border-top: 4px ridge #6F9BCF;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #3F7BF2;
+        }
+
+        .mascot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #87CEEB, #4682B4);
+            border: 4px ridge #6F9BCF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .mascot:active {
+            transform: scale(0.95);
+        }
+
+        .link {
+            color: #3F7BF2;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .link:hover {
+            color: #6F9BCF;
+            background: #87CEEB;
+        }
+
+        .divider {
+            border: 0;
+            height: 2px;
+            background: repeating-linear-gradient(90deg,
+                    #A2C8E3 0px,
+                    #A2C8E3 10px,
+                    transparent 10px,
+                    transparent 20px);
+            margin: 15px 0;
+        }
+
+        .blink {
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes progress {
+
+            0%,
+            100% {
+                width: 30%;
+            }
+
+            50% {
+                width: 90%;
+            }
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                border-right: none;
+                border-bottom: 4px ridge #6F9BCF;
+            }
+
+            .intro-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="bg-music" src="audios/besamemucho.mp3" loop></audio>
+
+    <script>
+        const audio = document.getElementById("bg-music");
+        let audioStarted = false;
+
+        // Función para iniciar el audio
+        function startAudio() {
+            if (!audioStarted) {
+                audio.play().then(() => {
+                    audioStarted = true;
+                    console.log("Audio iniciado");
+                }).catch(error => {
+                    console.log("No se pudo reproducir el audio:", error);
+                });
+            }
+        }
+
+        // Escuchar múltiples eventos de interacción
+        ['click', 'touchstart', 'keydown'].forEach(eventType => {
+            document.addEventListener(eventType, startAudio, { once: true });
+        });
+
+        // Opcional: Intentar reproducción automática (puede fallar en algunos navegadores)
+        window.addEventListener('load', () => {
+            audio.play().catch(() => {
+                // Si falla, esperar interacción del usuario
+                console.log("Se requiere interacción del usuario");
+            });
+        });
+    </script>
+
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>✿ 可愛い彼女のためのページ ✿</h1>
+            <p style="margin-top: 8px; font-size: 0.9em;">★ Página para mi novia hermosa preciosa ★</p>
+        </div>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                ★ Bienvenida a esta increíble página amorcito ★ Espero te guste! ★ Te amo mucho ★ Disfruta tu regalito!
+                ★
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-section" id="mainContent">
+                <!-- HOME PAGE -->
+                <div class="page-content active" id="home">
+                    <div class="box">
+                        <div class="box-header">INTRODUCCIÓN</div>
+                        <div class="box-content intro-box">
+                            <div class="avatar">
+                                <img src="images/avatar.jpg" alt="Avatar"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="intro-text">
+                                <h2>Bienvenida corazón!</h2>
+                                <p>Este es un regalo que estuve haciendo durante mis tiempos libres, estuve pensando en
+                                    cosas que podrían gustarte y realicé esta pequeña página web. </p>
+                                <hr class="divider">
+                                <p>Es algo que había querido hacerte desde hace unos días, procuré que quedara lo más
+                                    limpio y posible, tal vez no sea perfecto, pero lo hice con mucho cariño para ti, mi
+                                    amorcito.</p>
+                                <hr class="divider">
+                                <p>Espero te guste y lo disfrutes, te amo:)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Image/Banner Section -->
+                    <div class="box">
+                        <div class="box-header">✧ FEATURED ✧</div>
+                        <div class="box-content">
+                            <div
+                                style="border: 4px ridge #6F9BCF; background: linear-gradient(135deg, #D5E6F5, #BBDBEF); width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0px rgba(0,0,0,0.2); margin-bottom: 10px; overflow: hidden;">
+                                <img src="images/banner.jpg" alt="Featured Banner"
+                                    style="width: 100%; height: 100%; object-fit: cover; display: none;"
+                                    onload="this.style.display='block'; this.parentElement.style.background='none';"
+                                    onerror="this.style.display='none';">
+                                <p
+                                    style="color: #3F7BF2; font-weight: bold; text-align: center; font-size: 1.2em; position: absolute;">
+                                    🖼️<br><span style="font-size: 0.7em;"></span></p>
+                            </div>
+                            <p style="text-align: center; font-style: italic; font-size: 0.85em;">Nosotros jugando como
+                                parejita</p>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box-header">★ REGISTRO DE MEMORIAS ★</div>
+                        <div class="box-content">
+                            <div class="update-item">
+                                <div class="update-date">03.12.24</div>
+                                <p>Este 3 de diciembre jugué con mi noviecita de madrugada y hasta hicimos llamada, su
+                                    voz era tan bonita que no podía concentrarme en otra cosa más que escucharla.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box-header">◆ TE ADORO ◆</div>
+                        <div class="box-content">
+                            <p>Créeme que no me alcanzan las palabras para decir lo mucho que te amo mi niña, amo tanto
+                                el platicar y pasar tiempo contigo, siempre estoy esperando un mensaje tuyo.</p>
+                            <hr class="divider">
+                            <p>Amo que podamos tener esta confianza de contarnos todas las cosas, hice este sitio para
+                                demostrar lo mucho que realmente me importas y decirte todas las <span class="link"
+                                    onclick="navigateTo('diary')">cosas</span> que amo de ti</p>
+                            <hr class="divider">
+                            <p><span class="link blink" onclick="navigateTo('about')">→ dame click para más...</span>
+                            </p>
+
+                            <table class="status-table">
+                                <tr>
+                                    <td>Estado:</td>
+                                    <td>Enamorado de mi novia</td>
+                                </tr>
+                                <tr>
+                                    <td>Síntomas:</td>
+                                    <td>Saoritis Aguda</td>
+                                </tr>
+                                <tr>
+                                    <td>Gustos:</td>
+                                    <td>MI HERMOSA MUJER!!</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABOUT ME PAGE -->
+                <div class="page-content" id="about">
+                    <div class="box">
+                        <div class="box-header">♡ COMO ME SENTÍ ♡</div>
+                        <div class="box-content">
+                            <h2 style="color: #3F7BF2; margin-bottom: 10px;">✧ Como empezó todo ✧</h2>
+                            <p>Cuando recién empezamos a hablar en llamada y a jugar roblox, en verdad no esperaba
+                                mucho, pensé que sería algo pasajero y que terminaría en la nada, pero ahora me doy
+                                cuenta de lo equivocado que estaba.</p>
+                            <p>Conforme fuimos haciendo más llamadas y a hablarnos más seguido, cada día ibas captando
+                                más mi interés, empecé a esperar tus mensajes, los momentos donde podíamos hacer
+                                llamada, tan solo quería estar junto a ti,
+                                recuerdo que la primera vez que hicimos llamada estaba muy nervioso de hablar contigo,
+                                me parecías super linda y al escuchar tu voz, realmente quedé maravillado con ella, es
+                                una de las cosas que más amo de ti. </p>
+                            <p>Poco a poco empezó a gustarme el cariño y afecto que me dabas, me empezaste a gustar tú,
+                                eras tan tierna y linda que empecé a tener pensamientos de quererte solo para mí, puede
+                                sonar tonto, pero soy un chico avaricioso,
+                                quiero que estemos juntos siempre, juntarnos, casarnos y estar solo tú y yo, en verdad
+                                me he imaginado un futuro contigo y voy totalmente en serio cuando hablo de nosotros, tu
+                                forma de ser es algo que me tiene totalmente cautivado,
+                                no puedo creer que alguien tan tierna y bonita como tú exista, siempre he estado en
+                                busca de una persona con la cual me sienta cómodo y amado, y ahora que por fin la
+                                encontré, créeme que no pienso dejarte ir tan fácilmente mi saory <3 </p>
+                                    <hr class="divider">
+                                    <p>Ahora que somos una parejita, no puedo evitar el sentirme feliz cada que hablamos
+                                        y hacemos llamada, amo la forma en como te ríes, la forma en como me haces saber
+                                        todo, tu voz, tu pelo, tus ojos, tu sonrisa es algo que me gusta ver en cada
+                                        foto,
+                                        incluso amo la manera en como te quedas dormida cuando estamos en llamada, es
+                                        algo dulce y tierno, incluso me quedo para escucharte mientras duermes, lo que
+                                        termina provocando que me duerma contigo.
+                                        Me gusta ser tu novio, me hace sentir feliz.
+                                    </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIRTUAL DIARY -->
+                <div class="page-content" id="diary">
+                    <div class="box">
+                        <div class="box-header">📔 COSAS QUE AMO DE TI 📔</div>
+                        <div class="box-content">
+                            <div class="update-item">
+                                <div class="update-date">1</div>
+                                <p><strong>Tu voz: </strong></p>
+                                <p>Posiblemnte la parte que más me encanta de ti, es una voz tan tierna que podría
+                                    escucharla todo el día y no me cansaría, amo cuando dices que me amas con esa voz
+                                    tan perfecta que tienes amor.</p>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-date">2</div>
+                                <p><strong>Tu personalidad:</strong></p>
+                                <p>Me gusta mucho la manera en como eres, el cómo te expresas conmigo, la manera en como
+                                    poco a poco copias mis frases, tu tímidez, amo el intento que haces por ser más
+                                    abierta y cariñosa, valoro mucho tu esfuerzo cielo.</p>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-date">3</div>
+                                <p><strong>Tu pelo:</strong></p>
+                                <p>Sinceramente tu pelo es super bonito, no puedo evitar verlo cada que me mandas una
+                                    foto o video tuyo, de verdad me gustaría poder acariciarlo y tocarlo, simplemente me
+                                    encanta, ya sea rubio o castaño.</p>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-date">4</div>
+                                <p><strong>Tu habilidad culinaria:</strong></p>
+                                <p>Dios, es demasiado atractivo el que sepas cocicnar y hacer postres, es realmente algo
+                                    que me llamó el interés y hace que me gustes cada vez más, me gustaría probar tus
+                                    postres algún día.</p>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-date">5</div>
+                                <p><strong>Tu inteligencia emocional :</strong></p>
+                                <p>Una de las mejores cualidades que una persona puede poseer, me gusta ese control de
+                                    tus emociones, sabes directamente lo que quieres y no pierdes tiempo, gracias a esta
+                                    cualidad terminamos siendo novios:)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHOTO DIARY -->
+                <div class="page-content" id="photos">
+                    <div class="box">
+                        <div class="box-header">📷 PHOTO DIARY 📷</div>
+                        <div class="box-content">
+                            <p style="text-align: center; padding: 20px;">
+                                <strong style="color: #3F7BF2; font-size: 1.2em;">✧ Coming Soon ✧</strong>
+                            </p>
+                            <hr class="divider">
+                            <p>This section will feature photos and visual memories! You can add:</p>
+                            <p>📸 Daily photo logs</p>
+                            <p>🎨 Artwork and drawings</p>
+                            <p>🌸 Aesthetic collections</p>
+                            <p>💜 Special moments</p>
+                            <hr class="divider">
+                            <p style="text-align: center; font-style: italic;">Stay tuned for updates!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHRINES -->
+                <div class="page-content" id="shrines">
+                    <div class="box">
+                        <div class="box-header"> TE AMO </div>
+                        <div class="box-content">
+                            <h2 style="color: #3F7BF2; margin-bottom: 10px;">✧ :D ✧</h2>
+                            <p>Ya has llegado al final de este regalito, espero que realmente te haya gustado, me gusta hacerte estos detallitos para demostrarte mi amor, soy totalmente sincero con todo lo que te digo amor, en verdad me encantas demasiado, me haces muy feliz.</p>
+                            <p>GRACIAS POR LLEGAR A MI VIDA MI CORAZÓN DE PAPAYA, TE AMO DEMASIADOOOOOOOOOOOOOOOOOOOO, por cierto, espero que esta página se haya visto excelente en celular, en computadora según yo si, en télefono espero que también JAJAJ 🙏</p>
+                            <hr class="divider">
+                            <h2 style="color: #3F7BF2; margin-bottom: 10px;">✧ OTRAS COSAS ✧</h2>
+                            <div
+                                style="background: #F0F8FF; padding: 10px; border: 2px dashed #A2C8E3; margin: 10px 0;">
+                                <p><strong>🌸 Amor te extraño</strong></p>
+                                <p style="font-size: 0.85em;">¿Dónde estás? Me haces falta.</p>
+                            </div>
+                            <div
+                                style="background: #F0F8FF; padding: 10px; border: 2px dashed #A2C8E3; margin: 10px 0;">
+                                <p><strong>🎮 Roblox no es lo mismo sin ti</strong></p>
+                                <p style="font-size: 0.85em;">Si tú no juegas roblox, no me dan ganas ni de tocarlo.</p>
+                            </div>
+                            <div
+                                style="background: #F0F8FF; padding: 10px; border: 2px dashed #A2C8E3; margin: 10px 0;">
+                                <p><strong>💙 Mi hermosa mujer</strong></p>
+                                <p style="font-size: 0.85em;">Cada que te sientas linda, mándame foto, quiero llenar mi galería de ti.</p>
+                            </div>
+                            <div
+                                style="background: #F0F8FF; padding: 10px; border: 2px dashed #A2C8E3; margin: 10px 0;">
+                                <p><strong>✨ Bésame</strong></p>
+                                <p style="font-size: 0.85em;">La canción de fondo la elegí por la letra, realmente siento que encaja perfecto con como me siento.</p>
+                            </div>
+                            <div
+                                style="background: #F0F8FF; padding: 10px; border: 2px dashed #A2C8E3; margin: 10px 0;">
+                                <p><strong>🌿 Decoración</strong></p>
+                                <p style="font-size: 0.85em;">Sé lo mucho que te encanta attack on titan, por lo tanto decidí incluirlo como fondo, espero te hayas dado cuenta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHATROOM -->
+                <div class="page-content" id="chatroom">
+                    <div class="box">
+                        <div class="box-header">💬 CHATROOM 💬</div>
+                        <div class="box-content">
+                            <p style="text-align: center; padding: 20px;">
+                                <strong style="color: #3F7BF2; font-size: 1.2em;">✧ Chat Widget Coming Soon ✧</strong>
+                            </p>
+                            <hr class="divider">
+                            <p>This will be a space where visitors can:</p>
+                            <p>💙 Leave messages</p>
+                            <p>✨ Sign the guestbook</p>
+                            <p>🌸 Share their thoughts</p>
+                            <p>💬 Connect with others</p>
+                            <hr class="divider">
+                            <p><strong>For now, you can reach me at:</strong></p>
+                            <p style="margin-top: 10px;">📧 [Your contact info]</p>
+                            <p>🐦 [Your social media]</p>
+                            <p>💌 [Other contact methods]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="box">
+                    <div class="box-header">◇ NAVIGATION ◇</div>
+                    <div class="box-content">
+                        <div class="nav-link active" onclick="navigateTo('home')">INICIO</div>
+                        <div class="nav-link" onclick="navigateTo('about')">PALABRITAS</div>
+                        <div class="nav-link" onclick="navigateTo('diary')">LO QUE ME GUSTA DE TI</div>
+                        <div class="nav-link" onclick="navigateTo('shrines')">TE AMO</div>
+                    </div>
+                </div>
+
+                
+
+                <div class="box">
+                    <div class="box-header">🎵 REPRODUCIENDO 🎵</div>
+                    <div class="box-content">
+                        <div style="
+    background:
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('https://media.tenor.com/Cv02Q1wVqz8AAAAM/abell46s-reface.gif') center/cover no-repeat;
+    border: 3px inset #6F9BCF;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: inset 0 0 10px rgba(0,191,255,0.2);
+  ">
+                            <div style="text-align: center; margin-bottom: 10px;">
+                                <div
+                                    style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, #D5E6F5, #87CEEB); border: 2px solid #6F9BCF; display: flex; align-items: center; justify-content: center; animation: spin 4s linear infinite; overflow: hidden; border-radius: 50%;">
+                                    <img src="images/luismi.jpg" alt="Album Cover"
+                                        style="width: 100%; height: 100%; object-fit: cover; display: none;"
+                                        onload="this.style.display='block';"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                </div>
+                            </div>
+                            <p
+                                style="color: #87CEEB; text-align: center; font-weight: bold; font-size: 0.9em; margin: 5px 0;">
+                                Besame Mucho</p>
+                            <p style="color: #6F9BCF; text-align: center; font-size: 0.8em;">Luis Miguel</p>
+                            <div
+                                style="background: #333; height: 8px; border: 1px solid #6F9BCF; margin: 10px 0; position: relative; overflow: hidden;">
+                                <div
+                                    style="background: linear-gradient(90deg, #3F7BF2, #87CEEB); height: 100%; width: 60%; animation: progress 3s ease-in-out infinite;">
+                                </div>
+                            </div>
+                            <p style="color: #87CEEB; text-align: center; font-size: 0.75em; font-style: italic;">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header">♪ BIENVENIDA ♪</div>
+                    <div class="box-content visitor-counter">
+                        <p style="font-size: 0.85em; font-weight: bold;">ERES LA VISITANTE:</p>
+                        <div class="counter-display" id="counter">00000</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header">✓ COSAS POR HACER</div>
+                    <div class="box-content">
+                        <div class="todo-item">Hacer feliz a mi novia</div>
+                        <div class="todo-item">Obsesionarme con mi novia</div>
+                        <div class="todo-item">Robloxito con mi novia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            ★ SAOCORP ブニーコア 2025 ©️ Todos los derechos reservados !!! ★
+        </div>
+    </div>
+
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Visitor counter animation
+        const counter = document.getElementById('counter');
+        let count = 0;
+        const targetCount = Math.floor(Math.random() * 10000) + 1000;
+
+        const interval = setInterval(() => {
+            count += Math.floor(Math.random() * 100) + 50;
+            if (count >= targetCount) {
+                count = targetCount;
+                clearInterval(interval);
+            }
+            counter.textContent = count.toString().padStart(5, '0');
+        }, 50);
+
+        // Navigation function
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update navigation active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            event.target.classList.add('active');
+
+            // Scroll to top of content
+            document.getElementById('mainContent').scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mascot interaction
+        const mascot = document.getElementById('mascot');
+        const emojis = ['🎀', '🌸', '✨', '💜', '🦋', '🌟'];
+        let emojiIndex = 0;
+
+        mascot.addEventListener('click', () => {
+            emojiIndex = (emojiIndex + 1) % emojis.length;
+            mascot.textContent = emojis[emojiIndex];
+
+
+        });
+    </script>
+</body>
+
+</html>
